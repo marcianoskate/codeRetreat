@@ -29,14 +29,14 @@ public class Board {
     }
 
     private List<GameCell> createLife(List<GameCell> deads) {
-        List<GameCell> newCellList = new ArrayList<>();
-        CheckDeads(deads);
-        return newCellList;
+        return CheckDeads(deads);
     }
 
     private List<GameCell> CheckDeads(List<GameCell> deads) {
-        List<GameCell> newCellList = deads.stream().filter(dead -> 8 - getDeadCells(dead).size() == 3).map(dead -> new GameCell(dead.getX(), dead.getY())).collect(Collectors.toList());
-        return newCellList;
+        return deads.stream()
+                .filter(dead -> 8 - getDeadCells(dead).size() == 3)
+                .map(dead -> new GameCell(dead.getX(), dead.getY()))
+                .collect(Collectors.toList());
     }
 
     private List<GameCell> survives(GameCell gameCell, List<GameCell> deads) {
